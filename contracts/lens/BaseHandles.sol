@@ -31,7 +31,7 @@ contract BaseHandles is ERC721, IBaseHandles, ImmutableOwnable {
     // We used 31 to fit the handle in a single slot, with `.lens` that restricted localName to use 26 characters.
     // Can be extended later if needed.
     uint256 internal constant MAX_LOCAL_NAME_LENGTH = 26;
-    string public constant NAMESPACE = 'lens';
+    string public constant NAMESPACE = 'base';
     uint256 internal immutable NAMESPACE_LENGTH = bytes(NAMESPACE).length;
     bytes32 public constant NAMESPACE_HASH = keccak256(bytes(NAMESPACE));
 

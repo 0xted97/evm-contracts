@@ -18,7 +18,6 @@ describe("TaoWHandles", function () {
     });
     const handleSVG = await HandleSVG.deploy();
 
-    const TaoWHandlers = await ethers.getContractFactory("TaoWHandles");
     const HandleTokenURI = await ethers.getContractFactory("HandleTokenURI", {
       libraries: {
         HandleSVG: handleSVG.target
@@ -26,6 +25,8 @@ describe("TaoWHandles", function () {
     });
 
     const { deployer } = await getEOAAccounts();
+
+    const TaoWHandlers = await ethers.getContractFactory("TaoWHandles");
     taowHandes = await TaoWHandlers.deploy(deployer.address);
 
     expect(await taowHandes.OWNER()).to.be.eq(deployer.address);
@@ -37,6 +38,7 @@ describe("TaoWHandles", function () {
 
 
     expect(await taowHandes.getHandleTokenURIContract()).to.be.eq(handleTokenURI.target);
+
   });
 
 
