@@ -3,7 +3,7 @@ pragma solidity ^0.8.20;
 
 import {BaseHandles} from "./BaseHandles.sol";
 
-contract TaoWHandlers is BaseHandles {
+contract TaoWHandles is BaseHandles {
     constructor(address owner) BaseHandles(owner) {}
 
     function name() public pure virtual override returns (string memory) {

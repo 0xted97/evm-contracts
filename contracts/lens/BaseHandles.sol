@@ -62,11 +62,11 @@ contract BaseHandles is ERC721, IBaseHandles, ImmutableOwnable {
     }
 
     function name() public pure virtual override returns (string memory) {
-        return 'Lens Handles';
+        return 'Base Handles';
     }
 
     function symbol() public pure virtual override returns (string memory) {
-        return 'LH';
+        return 'BH';
     }
 
     function totalSupply() external view virtual override returns (uint256) {
