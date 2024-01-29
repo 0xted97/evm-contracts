@@ -55,6 +55,8 @@ describe("TaoWHandles", function () {
       const tokenId = await taowHandes.getTokenId(validName);
       const name = await taowHandes.getLocalName(tokenId);
       const owner = await taowHandes.ownerOf(tokenId);
+      const uri = await taowHandes.tokenURI(tokenId);
+      console.log("🚀 ~ it ~ uri:", uri)
 
       expect(name).to.be.eq(validName);
       expect(owner).to.be.eq(wallet1.address);
