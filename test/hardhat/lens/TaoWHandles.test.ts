@@ -77,6 +77,25 @@ describe("TaoWHandles", function () {
 
       await expect(mintTx).revertedWithCustomError(taowHandes, "HandleContainsInvalidCharacters");
     });
+
+    it("Owner of tokenId specific block tag", async () => {
+      const { wallet1, wallet2 } = await getEOAAccounts();
+      const name = "test123";
+      const mintTx = await taowHandes.mintHandle(wallet1.address, name);
+      const receptMint = await mintTx.wait();
+
+      const tokenId = await taowHandes.getTokenId(validName);
+
+      const transferTx = await taowHandes.connect(wallet1).transferFrom(wallet1.address, wallet2.address, tokenId);
+      const receptTransfer = await transferTx.wait();
+
+
+      const ownerInPrev = await taowHandes.ownerOf(tokenId, { blockTag: receptMint?.blockNumber });
+      const ownerInNext = await taowHandes.ownerOf(tokenId, { blockTag: receptTransfer?.blockHash });
+
+      expect(ownerInPrev).to.be.eq(wallet1.address);
+      expect(ownerInNext).to.be.eq(wallet2.address);
+    });
   });
 
 });
